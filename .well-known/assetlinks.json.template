@@ -1,0 +1,11 @@
+ {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "ru.aleshin.studyassistant.android,
+      "package_name": "ru.aleshin.studyassistant",
+      "sha256_cert_fingerprints": [
+        "${SHA256_CERT}"
+      ]
+    }
+  }
+]
