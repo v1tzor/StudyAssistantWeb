@@ -3,6 +3,7 @@ name: Build Pages with secret
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   build:
