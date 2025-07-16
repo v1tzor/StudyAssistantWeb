@@ -14,5 +14,28 @@
     }
   </style>
 </head>
-<body>You will be redirected to the app very soon...</body>
+<body>
+  You will be redirected to the app very soon...
+<script>
+    const deeplink = `https://studyassistant-app.ru/openMain`;
+    const fallbackDelay = 3000;
+
+    setTimeout(() => { location.href = deeplink; }, 1500);
+
+    // Если deeplink не сработает, перейти в магазин приложений
+    setTimeout(() => {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      if (/android/i.test(userAgent)) {
+        // Google Play fallback
+        window.location.href = "https://www.rustore.ru/catalog/app/ru.aleshin.studyassistant";
+      } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        // window.location.href = "https://apps.apple.com/app/id1234567890";
+        document.body.innerText = "Please install app for your device";
+      } else {
+        document.body.innerText = "Please install app for your device";
+      }
+    }, fallbackDelay);
+  </script>
+</body>
 </html>
