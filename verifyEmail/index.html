@@ -22,7 +22,7 @@
     const secret = p.get("secret");
 
     if (userId && secret) {
-      const deeplink = `https://studyassistant-app.ru/verifyEmail?userId=${encodeURIComponent(userId)}&secret=${encodeURIComponent(secret)}`;
+      const deeplink = `app://studyassistant-app.ru/verifyEmail?userId=${encodeURIComponent(userId)}&secret=${encodeURIComponent(secret)}`;
       const fallbackDelay = 3000;
 
       setTimeout(() => { location.href = deeplink; }, 1500);
