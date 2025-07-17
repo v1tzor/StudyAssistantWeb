@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title data-i18n="title_recovery">Password Recovery</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/appwrite@18.1.1"></script>
   <style>
     body { font-family: Arial, sans-serif; background: #f5f5fa; padding: 50px 20px; }
     .container { background: white; max-width: 400px; margin: 50px auto; padding: 30px; border-radius: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; }
@@ -11,21 +12,22 @@
     input, button { width: 100%; padding: 12px; margin-bottom: 15px; font-size: 16px; }
     input { border: 1px solid #ccc; border-radius: 10px; box-sizing: border-box; }
     button { background: #575992; color: white; border: none; cursor: pointer; border-radius: 10px; }
-    .password-wrapper { position: relative; }
-    .toggle-visibility {
-      position: absolute;
-      top: 50%;
-      right: 12px;
-      transform: translateY(-50%);
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-size: 18px;
-    }
     #status { margin-top: 10px; min-height: 1.2em; font-weight: bold; }
   </style>
+</head>
+<body>
+  <div class="container">
+    <h2 data-i18n="title_recovery">Password Recovery</h2>
+    <input type="password" id="newPassword" data-i18n-placeholder="placeholder_pass" placeholder="New password">
+    <button id="recoverBtn" data-i18n="btn_recover">Recover Password</button>
+    <select id="langSwitch">
+      <option value="en">English</option>
+      <option value="ru">Русский</option>
+    </select>
+    <div id="status"></div>
+  </div>
 
-  <script>
+  <script type="">
     const PROJECT_ID = '685aefd7003bf3aab9fc';
     const ENDPOINT = 'https://fra.cloud.appwrite.io/v1';
 
@@ -38,38 +40,24 @@
     const params = new URLSearchParams(window.location.search);
     const userId = params.get('userId');
     const secret = params.get('secret');
+    const btn = document.getElementById('recoverBtn');
+    const status = document.getElementById('status');
 
-    window.onload = () => {
-      document.getElementById('recoverBtn').onclick = () => {
-        const pwd = document.getElementById('newPassword').value;
-        if (!pwd || pwd.length < 6) {
-          return setStatus('msg_pass_length', 'red');
-        }
-        if (userId && secret) {
-          account.updateRecovery(userId, secret, pwd)
-            .then(() => {
-              setStatus('msg_recovered', 'green');
-              setTimeout(() => window.location.href = 'https://studyassistant-app.ru/openMain', 2000);
-            })
-            .catch(() => setStatus('msg_recovery_error', 'red'));
-        } else {
-          setStatus('msg_recovery_error', 'red');
-        }
-      };
-
-      document.getElementById('togglePassword').onclick = () => {
-        const pwdField = document.getElementById('newPassword');
-        const isVisible = pwdField.type === 'text';
-        pwdField.type = isVisible ? 'password' : 'text';
-        document.getElementById('togglePassword').textContent = isVisible ? '👁' : '🙈';
-      };
-
-      document.getElementById('langSwitch').onchange = e => {
-        localStorage.setItem('lang', e.target.value);
-        location.reload();
-      };
-
-      initI18n();
+    btn.onclick = () => {
+      const pwd = document.getElementById('newPassword').value;
+      if (!pwd || pwd.length < 6) {
+        return setStatus('msg_pass_length', 'red');
+      }
+      if (userId && secret) {
+        account.updateRecovery(userId, secret, pwd)
+          .then(() => {
+            setStatus('msg_recovered', 'green');
+            setTimeout(() => window.location.href = 'https://studyassistant-app.ru/', 2000);
+          })
+          .catch(() => setStatus('msg_recovery_error', 'red'));
+      } else {
+        setStatus('msg_recovery_error', 'red');
+      }
     };
 
     async function initI18n() {
@@ -88,25 +76,16 @@
     }
 
     function setStatus(key, color) {
-      const status = document.getElementById('status');
       status.style.color = color;
       status.textContent = window.translations?.[key] || key;
     }
+
+    document.getElementById('langSwitch').onchange = e => {
+      localStorage.setItem('lang', e.target.value);
+      location.reload();
+    };
+
+    initI18n();
   </script>
-</head>
-<body>
-  <div class="container">
-    <h2 data-i18n="title_recovery">Password Recovery</h2>
-    <div class="password-wrapper">
-      <input type="password" id="newPassword" data-i18n-placeholder="placeholder_pass" placeholder="New password">
-      <button type="button" id="togglePassword" class="toggle-visibility">👁</button>
-    </div>
-    <button id="recoverBtn" data-i18n="btn_recover">Recover Password</button>
-    <select id="langSwitch">
-      <option value="en">English</option>
-      <option value="ru">Русский</option>
-    </select>
-    <div id="status"></div>
-  </div>
 </body>
 </html>
