@@ -22,8 +22,8 @@
     </select>
   </div>
 
-  <script>
-    import { client, account } from "./lib/appwrite.js";
+  <script type="module">
+    import { account } from './lib/appwrite.js';
 
     const params = new URLSearchParams(window.location.search);
     const userId = params.get('userId');
