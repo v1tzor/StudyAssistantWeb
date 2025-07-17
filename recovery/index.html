@@ -6,13 +6,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/appwrite@18.1.1"></script>
   <style>
-    body { font-family: Arial, sans-serif; background: #f5f5fa; padding: 50px 20px; }
-    .container { background: white; max-width: 400px; margin: 50px auto; padding: 30px; border-radius: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; }
-    h2 { color: #575992; margin-bottom: 20px; }
-    input, button { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 10px; font-size: 16px; }
-    input { border: 1px solid #ccc; }
-    button { background: #575992; color: white; border: none; cursor: pointer; }
-    #status { margin-top: 10px; min-height: 1.2em; font-weight: bold; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5fa;
+      padding: 50px 20px;
+    }
+    .container {
+      background: white;
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h2 {
+      color: #575992;
+      margin-bottom: 20px;
+    }
+    .password-wrapper {
+      position: relative;
+      margin-bottom: 15px;
+    }
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 16px;
+      color: #575992;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background: #575992;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    #status {
+      margin-top: 10px;
+      min-height: 1.2em;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
