@@ -27,8 +27,15 @@
     <div id="status"></div>
   </div>
 
-  <script type="module">
-    import { account } from './lib/appwrite.js';
+  <script type="">
+    const PROJECT_ID = '685aefd7003bf3aab9fc';
+    const ENDPOINT = 'https://fra.cloud.appwrite.io/v1';
+
+    const client = new Appwrite.Client()
+      .setEndpoint(ENDPOINT)
+      .setProject(PROJECT_ID);
+
+    const account = new Appwrite.Account(client);
 
     const params = new URLSearchParams(window.location.search);
     const userId = params.get('userId');
