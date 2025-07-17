@@ -20,10 +20,6 @@
     <h2 data-i18n="title_recovery">Password Recovery</h2>
     <input type="password" id="newPassword" data-i18n-placeholder="placeholder_pass" placeholder="New password">
     <button id="recoverBtn" data-i18n="btn_recover">Recover Password</button>
-    <select id="langSwitch">
-      <option value="en">English</option>
-      <option value="ru">Русский</option>
-    </select>
     <div id="status"></div>
   </div>
 
@@ -40,24 +36,25 @@
     const params = new URLSearchParams(window.location.search);
     const userId = params.get('userId');
     const secret = params.get('secret');
-    const btn = document.getElementById('recoverBtn');
-    const status = document.getElementById('status');
-
-    btn.onclick = () => {
-      const pwd = document.getElementById('newPassword').value;
-      if (!pwd || pwd.length < 6) {
-        return setStatus('msg_pass_length', 'red');
-      }
-      if (userId && secret) {
-        account.updateRecovery(userId, secret, pwd)
-          .then(() => {
-            setStatus('msg_recovered', 'green');
-            setTimeout(() => window.location.href = 'https://studyassistant-app.ru/', 2000);
-          })
-          .catch(() => setStatus('msg_recovery_error', 'red'));
-      } else {
-        setStatus('msg_recovery_error', 'red');
-      }
+   
+    window.onload = async () => {
+      const translations = await initI18n();
+      document.getElementById('recoverBtn').onclick = () => {
+        const pwd = document.getElementById('newPassword').value;
+        if (!pwd || pwd.length < 6) {
+          return setStatus('msg_pass_length', 'red', translations);
+        }
+        if (userId && secret) {
+          account.updateRecovery(userId, secret, pwd)
+            .then(() => {
+              setStatus('msg_recovered', 'green', translations);
+              setTimeout(() => window.location.href = 'https://studyassistant-app.ru/openMain', 2000);
+            })
+            .catch(() => setStatus('msg_recovery_error', 'red', translations));
+        } else {
+          setStatus('msg_recovery_error', 'red', translations);
+        }
+      };
     };
 
     async function initI18n() {
@@ -73,19 +70,14 @@
         if (data[key]) el.placeholder = data[key];
       });
       window.translations = data;
+      return data;
     }
 
-    function setStatus(key, color) {
+    function setStatus(key, color, translations = {}) {
+      const status = document.getElementById('status');
       status.style.color = color;
-      status.textContent = window.translations?.[key] || key;
+      status.textContent = translations[key] || key;
     }
-
-    document.getElementById('langSwitch').onchange = e => {
-      localStorage.setItem('lang', e.target.value);
-      location.reload();
-    };
-
-    initI18n();
   </script>
 </body>
 </html>
