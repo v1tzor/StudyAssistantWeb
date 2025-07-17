@@ -12,6 +12,8 @@
     input, button { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 10px; font-size: 16px; }
     input { border: 1px solid #ccc; }
     button { background: #575992; color: white; border: none; cursor: pointer; }
+    .password-wrapper { position: relative; }
+    .toggle-visibility { position: absolute; right: 10px; top: 12px; cursor: pointer; background: none; border: none; color: #575992; font-size: 14px; }
     #status { margin-top: 10px; min-height: 1.2em; font-weight: bold; }
   </style>
 </head>
@@ -43,21 +45,37 @@
     const btn = document.getElementById('recoverBtn');
     const status = document.getElementById('status');
 
-    btn.onclick = () => {
-      const pwd = document.getElementById('newPassword').value;
-      if (!pwd || pwd.length < 6) {
-        return setStatus('msg_pass_length', 'red');
-      }
-      if (userId && secret) {
-        account.updateRecovery(userId, secret, pwd)
-          .then(() => {
-            setStatus('msg_recovered', 'green');
-            setTimeout(() => window.location.href = 'https://studyassistant-app.ru/', 2000);
-          })
-          .catch(() => setStatus('msg_recovery_error', 'red'));
-      } else {
-        setStatus('msg_recovery_error', 'red');
-      }
+    window.onload = () => {
+      document.getElementById('recoverBtn').onclick = () => {
+        const pwd = document.getElementById('newPassword').value;
+        if (!pwd || pwd.length < 6) {
+          return setStatus('msg_pass_length', 'red');
+        }
+        if (userId && secret) {
+          account.updateRecovery(userId, secret, pwd)
+            .then(() => {
+              setStatus('msg_recovered', 'green');
+              setTimeout(() => window.location.href = 'https://studyassistant-app.ru/openMain', 2000);
+            })
+            .catch(() => setStatus('msg_recovery_error', 'red'));
+        } else {
+          setStatus('msg_recovery_error', 'red');
+        }
+      };
+
+      document.getElementById('togglePassword').onclick = () => {
+        const pwdField = document.getElementById('newPassword');
+        const isVisible = pwdField.type === 'text';
+        pwdField.type = isVisible ? 'password' : 'text';
+        document.getElementById('togglePassword').textContent = isVisible ? '👁' : '🙈';
+      };
+
+      document.getElementById('langSwitch').onchange = e => {
+        localStorage.setItem('lang', e.target.value);
+        location.reload();
+      };
+
+      initI18n();
     };
 
     async function initI18n() {
@@ -76,16 +94,25 @@
     }
 
     function setStatus(key, color) {
+      const status = document.getElementById('status');
       status.style.color = color;
       status.textContent = window.translations?.[key] || key;
     }
-
-    document.getElementById('langSwitch').onchange = e => {
-      localStorage.setItem('lang', e.target.value);
-      location.reload();
-    };
-
-    initI18n();
   </script>
+</head>
+<body>
+  <div class="container">
+    <h2 data-i18n="title_recovery">Password Recovery</h2>
+    <div class="password-wrapper">
+      <input type="password" id="newPassword" data-i18n-placeholder="placeholder_pass" placeholder="New password">
+      <button type="button" id="togglePassword" class="toggle-visibility">👁</button>
+    </div>
+    <button id="recoverBtn" data-i18n="btn_recover">Recover Password</button>
+    <select id="langSwitch">
+      <option value="en">English</option>
+      <option value="ru">Русский</option>
+    </select>
+    <div id="status"></div>
+  </div>
 </body>
 </html>
