@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Верификация почты</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/appwrite@13.0.1"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5fa;
+      color: #333;
+      text-align: center;
+      padding-top: 100px;
+    }
+    .box {
+      background: white;
+      max-width: 400px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #575992;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="message">
+    <h2>Подтверждение почты</h2>
+    <p>Пожалуйста, подождите...</p>
+  </div>
+
+  <script>
+    const client = new Appwrite.Client()
+      .setEndpoint('https://fra.cloud.appwrite.io/v1')
+      .setProject('685aefd7003bf3aab9fc');
+
+    const account = new Appwrite.Account(client);
+
+    const params = new URLSearchParams(window.location.search);
+    const userId = params.get('userId');
+    const secret = params.get('secret');
+
+    const messageBox = document.getElementById('message');
+
+    if (userId && secret) {
+      account.updateVerification(userId, secret)
+        .then(() => {
+          messageBox.innerHTML = `
+            <h2>Успешно!</h2>
+            <p>Ваша почта подтверждена. Перенаправляем...</p>`;
+          setTimeout(() => {
+            window.location.href = 'https://studyassistant-app.ru/openMain';
+          }, 2000);
+        })
+        .catch(() => {
+          messageBox.innerHTML = `
+            <h2>Ошибка</h2>
+            <p>Не удалось подтвердить почту. Возможно, ссылка устарела.</p>`;
+        });
+    } else {
+      messageBox.innerHTML = `<h2>Ошибка</h2><p>Некорректная ссылка</p>`;
+    }
+  </script>
+</body>
+</html>
