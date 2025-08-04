@@ -1,41 +1,7 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Open StudyAssistant App</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: sans-serif;
-      font-size: 1.5em;
-    }
-  </style>
-</head>
-<body>
-  You will be redirected to the app very soon...
-<script>
-    const deeplink = `https://studyassistant-app.ru/`;
-    const fallbackDelay = 3000;
-
-    setTimeout(() => { location.href = deeplink; }, 1500);
-
-    // Если deeplink не сработает, перейти в магазин приложений
-    setTimeout(() => {
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-      if (/android/i.test(userAgent)) {
-        // Google Play fallback
-        window.location.href = "https://www.rustore.ru/catalog/app/ru.aleshin.studyassistant";
-      } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        // window.location.href = "https://apps.apple.com/app/id1234567890";
-        document.body.innerText = "Please install app for your device";
-      } else {
-        document.body.innerText = "Please install app for your device";
-      }
-    }, fallbackDelay);
-  </script>
-</body>
+<!doctype html>
+<html lang="en">
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
