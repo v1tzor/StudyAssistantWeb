@@ -1,15 +1,25 @@
 {
+  "name": "study-assistant-web",
+  "version": "0.0.1",
+  "homepage": "https://studyassistant-app.ru/",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "vite build && gh-pages -d dist"
+  },
   "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "@relume_io/relume-tailwind": "^1.3.0",
     "@relume_io/relume-ui": "^1.3.1",
-    "@tailwindcss/vite": "^4.1.11",
     "react-router-dom": "^7.7.1"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "gh-pages": "^6.3.0",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.11",
-    "vite": "^7.0.6"
+    "vite": "^5.2.0",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.21",
+    "autoprefixer": "^10.4.14",
+    "gh-pages": "^6.0.0"
   }
 }
