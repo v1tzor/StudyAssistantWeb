@@ -51,7 +51,6 @@ studyassistant-web/
 ├── verify/         
 ├── global-context.js
 ├── next.config.js
-├── middleware.js
 ├── jsconfig.json
 └── README.md
 ```
