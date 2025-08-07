@@ -1,20 +1,20 @@
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Head from 'next/head';
 
-export default function IndexRedirect() {
-  const router = useRouter()
+export default function Home() {
+  const router = useRouter();
 
   useEffect(() => {
-    const browserLang = navigator.language.split('-')[0]
-    const supportedLangs = ['en', 'ru']
-    const defaultLang = supportedLangs.includes(browserLang) ? browserLang : 'en'
+    const browserLanguage = navigator.language || navigator.userLanguage;
+    
+    const isRussian = browserLanguage.startsWith('ru');
+    
+    router.push(isRussian ? '/ru' : '/en');
+  }, [router]);
 
-    window.location.href = `/${defaultLang}`
-  }, [])
-
-  return null
-}
-
-export const config = {
-  unstable_runtimeJS: false
+  return (
+    <div>
+    </div>
+  );
 }
