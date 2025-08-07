@@ -1,13 +1,20 @@
 import './style.css'
-
-import { GlobalProvider } from '../global-context'
 import { NextIntlProvider } from 'next-intl'
-export default function MyApp({ Component, pageProps }) {
+import { useRouter } from 'next/router'
+
+function MyApp({ Component, pageProps }) {
+  const router = useRouter()
+  const locale = router.query.lang || 'en'
+
   return (
-    <NextIntlProvider messages={pageProps?.messages}>
-      <GlobalProvider>
-        <Component {...pageProps} />
-      </GlobalProvider>
+    <NextIntlProvider
+      locale={locale}
+      messages={pageProps.messages}
+      now={new Date(pageProps.now)}
+    >
+      <Component {...pageProps} />
     </NextIntlProvider>
   )
 }
+
+export default MyApp

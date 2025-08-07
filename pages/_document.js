@@ -4,6 +4,13 @@ class CustomDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta name="apple-mobile-web-app-title" content="StudyAssistant" />
+          <link rel="icon" href="/favicon.ico" />
+          <link rel="apple-touch-icon" href="/apple-icon.png" />
+          <link rel="icon" type="image/png" sizes="192x192" href="/icon1.png" />
+          <link rel="icon" type="image/png" sizes="512x512" href="/icon1.png" />
+          <link rel="manifest" href="/manifest.json" />
+          <meta name="theme-color" content="#5F0DBC" />
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"

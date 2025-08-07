@@ -739,3 +739,25 @@
     grid-template-columns: 1fr;
   }
 }
+
+.language-switcher {
+  position: relative;
+  z-index: 100;
+}
+
+@media (max-width: 768px) {
+  .language-switcher {
+    margin: 10px 0;
+  }
+  
+  .language-dropdown {
+    position: static !important;
+    width: 100%;
+  }
+}
+
+.home-links1 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}

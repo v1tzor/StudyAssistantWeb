@@ -1,48 +1,51 @@
+// import { createContext, useContext, useState, useEffect } from 'react'
+// import { useRouter } from 'next/router'
 
-import { createContext, useMemo, useContext, useState, useEffect } from 'react'
-import { useLocale } from "next-intl";
+// const GlobalContext = createContext()
 
-const GlobalContext = createContext(null)
+// export const GlobalProvider = ({ children }) => {
+//   const router = useRouter()
+//   const [locales] = useState([
+//     { name: 'English', short: 'en' },
+//     { name: 'Russian', short: 'ru' }
+//   ])
 
-export const GlobalProvider = ({ initialLocales, children }) => {
-  const localeValue = useLocale()
-  const [locales, setLocales] = useState(
-    initialLocales ?? [{"name":"English","short":"en"}, {"name":"Russian","short":"ru"}]
-  )
-  const [locale, setLocale] = useState({"name":"English","short":"en"})
-  
-  useEffect(() => {
-    if (!locales) {
-      return
-    }
+//   const getLocaleFromPath = () => {
+//     const pathParts = window.location.pathname.split('/').filter(Boolean)
+//     return pathParts[0] === 'ru' ? 'ru' : 'en'
+//   }
 
-    const currentLangValue = locales.find((el) => el.short === localeValue)
-    setLocale(currentLangValue)
-  }, [locales])
+//   const [locale, setLocale] = useState(getLocaleFromPath())
 
-  const value = useMemo(() => {
-    return {
-      locales,
-      locale,
-      setLocales,
-      setLocale
-    }
-  }, [locales, locale])
+//   useEffect(() => {
+//     const handlePopState = () => {
+//       setLocale(getLocaleFromPath())
+//     }
 
-  return (
-    <GlobalContext.Provider value={value}>
-      {children}
-    </GlobalContext.Provider>
-  )
-}
+//     window.addEventListener('popstate', handlePopState)
+//     return () => window.removeEventListener('popstate', handlePopState)
+//   }, [])
 
-export const useGlobalContext = () => {
-  const context = useContext(GlobalContext)
-  if (!context) {
-    throw new Error('useGlobalContext must be used within a GlobalProvider')
-  }
+//   const value = {
+//     locale: locales.find(l => l.short === locale) || locales[0],
+//     setLocale: (newLocale) => {
+//       const newPath = window.location.pathname.replace(`/${locale}`, `/${newLocale}`)
+//       window.location.href = newPath
+//     },
+//     locales
+//   }
 
-  return {
-    ...context
-  }
-}
+//   return (
+//     <GlobalContext.Provider value={value}>
+//       {children}
+//     </GlobalContext.Provider>
+//   )
+// }
+
+// export const useGlobalContext = () => {
+//   const context = useContext(GlobalContext)
+//   if (!context) {
+//     throw new Error('useGlobalContext must be used within a GlobalProvider')
+//   }
+//   return context
+// }
