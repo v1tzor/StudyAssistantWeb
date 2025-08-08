@@ -5,11 +5,11 @@ import Head from 'next/head'
 import Script from 'dangerous-html/react'
 import { useTranslations } from 'next-intl'
 
-import Feature from '../../components/feature'
-import Highlight from '../../components/highlight'
-import Point from '../../components/point'
-import Accordion from '../../components/accordion'
-import Footer from '../../components/footer'
+import Feature from '../../../components/feature'
+import Highlight from '../../../components/highlight'
+import Point from '../../../components/point'
+import Accordion from '../../../components/accordion'
+import Footer from '../../../components/footer'
 import LanguageSwitcher from '@/components/languageswitcher'
 
 const Home = (props) => {
@@ -1709,8 +1709,8 @@ const Home = (props) => {
 export default Home
 
 export async function getStaticProps({ params }) {
-  const locale = 'en'
-  const messages = (await import(`../../locales/${locale}.json`)).default
+  const locale = 'ru'
+  const messages = (await import(`../../../locales/${locale}.json`)).default
 
   return {
     props: {

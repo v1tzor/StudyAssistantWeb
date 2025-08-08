@@ -1,30 +1,37 @@
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 export default function LanguageSwitcher() {
   const router = useRouter()
-  
-  // Определяем текущую локаль из URL
-  const currentLocale = router.asPath.split('/')[1] || 'en'
-  
-  // Поддерживаемые языки
+  const { asPath } = router
+
   const locales = [
     { short: 'en', name: 'English' },
     { short: 'ru', name: 'Русский' }
   ]
 
+  const [currentLocale, setCurrentLocale] = useState('')
+
+  useEffect(() => {
+    const parts = asPath.split('/')
+    setCurrentLocale(parts[parts.length - 2] || 'en')
+  }, [asPath])
+
   const handleLocaleChange = (e) => {
     const selectedLocale = e.target.value
-    let newPath = router.asPath
+    const url = new URL(asPath, window.location.origin)
 
-    // Заменяем локаль в пути
-    if (newPath.startsWith('/en') || newPath.startsWith('/ru')) {
-      newPath = newPath.replace(/^\/[a-z]{2}/, `/${selectedLocale}`)
+    const segments = url.pathname.split('/').filter(Boolean)
+
+    if (segments.length > 0) {
+      segments[segments.length - 1] = selectedLocale
     } else {
-      newPath = `/${selectedLocale}${newPath}`
+      segments.push(selectedLocale)
     }
 
-    // Для статического экспорта используем полную перезагрузку
-    window.location.href = newPath
+    const newPath = '/' + segments.join('/') + url.hash
+
+    router.push(newPath)
   }
 
   return (
