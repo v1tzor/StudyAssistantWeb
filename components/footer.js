@@ -299,7 +299,7 @@ const Footer = (props) => {
           .footer-text12 {
             color: rgb(196, 196, 196);
             width: var(--dl-layout-size-xxlarge);
-            font-size: 18px;
+            font-size: 16px;
             max-width: auto;
             align-self: center;
             text-align: right;

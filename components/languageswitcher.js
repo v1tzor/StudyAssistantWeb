@@ -50,7 +50,7 @@ export default function LanguageSwitcher() {
 
       <style jsx>{`
         .language-switcher {
-          margin-left: 1rem;
+          margin-left: auto;
         }
 
         .language-select {

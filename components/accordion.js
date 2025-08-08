@@ -39,9 +39,8 @@ const Accordion = (props) => {
       
       <style jsx>{`
         .accordion-container {
-          width: 640px;
-          max-width: 640px;
-          margin: 0 auto;
+          width: 100%;
+          max-width: 535px;
           font-family: 'CeraPro-Regular', sans-serif;
         }
         

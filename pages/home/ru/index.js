@@ -444,9 +444,10 @@ const Home = (props) => {
           .home-main {
             gap: var(--dl-layout-space-fiveunits);
             display: flex;
+            width: 100%;
             align-items: center;
             flex-direction: row;
-            justify-content: center;
+            justify-content: start;
           }
           .home-branding {
             display: flex;
@@ -610,7 +611,7 @@ const Home = (props) => {
             display: flex;
             position: relative;
             max-width: 1200px;
-            align-items: center;
+            align-items: start;
             padding-left: var(--dl-layout-space-oneandhalfunits);
             padding-right: var(--dl-layout-space-oneandhalfunits);
             flex-direction: row;
@@ -1154,14 +1155,15 @@ const Home = (props) => {
           .home-content7 {
             gap: var(--dl-layout-space-oneandhalfunits);
             display: flex;
+            width: 100%;
+            max-width: 535px;
             margin-top: var(--dl-layout-space-fiveunits);
             align-items: flex-start;
             flex-direction: column;
           }
           .home-text44 {
             font-size: 42px;
-            width: 650px;
-            max-width: 650px;
+            max-width: 535px;
             font-style: normal;
             font-family: 'CeraPro-Bold';
             font-weight: 600;

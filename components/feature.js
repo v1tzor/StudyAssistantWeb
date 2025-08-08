@@ -116,16 +116,18 @@ const Feature = (props) => {
               line-height: 24px;
             }
           }
-          @media (max-width: 479px) {
+          @media (max-width: 561px) {
             .feature-feature {
-              padding-top: 0px;
-              padding-bottom: 0px;
+              width: 100%;
+            }
+            .feature-content { 
+              width: 100%;
             }
             .featureroot-class-name {
-              width: auto;
+              width: 100%;
             }
             .featureroot-class-name1 {
-              width: auto;
+              width: 100%;
             }
           }
         `}
