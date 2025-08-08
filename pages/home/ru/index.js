@@ -1655,9 +1655,6 @@ const Home = (props) => {
             .home-rows {
               flex-direction: column;
             }
-            .home-title2 {
-              font-size: 16px;
-            }
             .home-get-started2 {
               display: none;
             }

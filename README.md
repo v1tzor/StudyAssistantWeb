@@ -2,7 +2,6 @@
 
 <p align="start">
   <img alt="Next.js" src="https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white&style=for-the-badge" />
-  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&logoColor=white&style=for-the-badge" />
 </p>
 
 ---
@@ -23,7 +22,6 @@ Built using **Next.js** this site is fast, responsive, and SEO-friendly.
 ## 🚀 Features
 
 - ⚡️ **Blazing-fast** performance with Next.js static optimization  
-- 🌙 **Light/Dark mode** support (follows system preference)  
 - 📱 **Responsive** design for mobile, tablet, and desktop  
 - 🌍 **i18n ready** – prepared for multiple language support  
 - 🛠️ Fully customizable and extensible  
@@ -45,11 +43,8 @@ Built using **Next.js** this site is fast, responsive, and SEO-friendly.
 studyassistant-web/
 ├── public/
 ├── components/
-├── pages/ 
+├── pages/
 ├── locales/
-├── recovery/
-├── verify/         
-├── global-context.js
 ├── next.config.js
 ├── jsconfig.json
 └── README.md

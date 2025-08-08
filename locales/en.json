@@ -126,5 +126,15 @@
     "copyright": "© 2025 All Rights Reserved",
     "developer_info": "Created by Stanislav Aleshin",
     "privacy": "Privacy policy"
-  }
+  },
+  "title_verify": "Email Verification",
+  "msg_wait": "Please wait...",
+  "msg_success": "Success! Email verified!",
+  "msg_error": "Error verifying email. The link may have expired.",
+  "title_recovery": "Password Recovery",
+  "placeholder_pass": "New password",
+  "btn_recover": "Recover Password",
+  "msg_pass_length": "Password must be at least > 6 characters.",
+  "msg_recovered": "Password changed!",
+  "msg_recovery_error": "Error recovering password. Link may be invalid."
 }
