@@ -23,7 +23,7 @@ const Verify = (props) => {
             if (userId && secret) {
                 try {
                     await account.updateVerification(userId, secret);
-                    setMessage({title: t('msg_success'),content: '...'});
+                    setMessage({title: t('msg_success'),content: ''});
                 } catch (error) {
                     setMessage({title: t('msg_error'), content: ''});
                 } finally {

@@ -79,12 +79,15 @@ const Recovery = (props) => {
             overflow: auto;
             min-height: 100vh;
             align-items: center;
+            padding-left: 16px;
+            padding-right: 16px;
             flex-direction: column;
             justify-content: center;
         }
         
         .recovery-box {
-            width: 421px;
+            max-width: 421px;
+            width: 100%;
             display: flex;
             align-items: center;
             flex-direction: column;
