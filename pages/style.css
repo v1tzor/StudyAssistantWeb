@@ -762,24 +762,29 @@
   gap: 20px;
 }
 
-body {
+
+.privacy body {
   line-height: 1.5;
 }
 
-h1 {
+.privacy h1 {
   font-size: 2rem;
+  margin: 0 0 2rem;
+}
+
+.privacy h2 {
   margin: 0 0 1rem;
 }
 
-p {
-  margin: 0 0 1rem;
+.privacy p {
+  margin: 1rem 1rem 1rem;
 }
 
-ul, ol {
-  margin: 0 0 1rem;
-  padding-left: 1.5rem;
+.privacy ul, ol {
+  margin: 1rem 0 1rem;
+  padding-left: 2rem;
 }
 
-li {
+.privacy li {
   margin: 0.25rem 0;
 }
