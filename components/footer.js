@@ -66,7 +66,7 @@ const Footer = (props) => {
                 {props.link12}
               </a>
               <a
-                href="https://www.termsfeed.com/live/32b56f45-28c2-4942-89b8-f900516d2129"
+                href="https://studyassistant-app.ru/privacy/"
                 target="_blank"
                 rel="noreferrer noopener"
                 className="footer-link4"
