@@ -22,18 +22,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      # - name: Setup Pages
-      #   uses: actions/configure-pages@v5
-
-      # - name: Build with Jekyll
-      #   uses: actions/jekyll-build-pages@v1
-      #   with:
-      #     source: ./
-      #     destination: ./_site
-          
-      # - name: Upload artifact
-      #   uses: actions/upload-pages-artifact@v3
         
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -53,14 +41,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
-      # - name: Generate assetlinks.json
-      #   env:
-      #     SHA256_CERT: ${{ secrets.SHA256_CERT }}
-      #   run: |
-      #     mkdir -p .well-known
-      #     sed "s|\${SHA256_CERT}|${{ secrets.SHA256_CERT }}|g" .well-known/assetlinks.json.template > .well-known/assetlinks.json
-      
-      
 
   # Deployment job
   deploy:
